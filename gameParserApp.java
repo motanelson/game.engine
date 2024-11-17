@@ -6,9 +6,11 @@ import org.antlr.v4.runtime.tree.*;
 import java.util.Scanner;
 import javax.swing.*;
 import java.awt.*;
-
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 public class gameParserApp extends JFrame {
-    String source="CASTLE 50,50\r\nHOUSE 50,200\r\n";
+    static String source="CASTLE 50,50\r\nHOUSE 50,200\r\n";
     public gameParserApp() {
         // Configurações da janela
         setTitle("Janela com Canvas");
@@ -24,9 +26,26 @@ public class gameParserApp extends JFrame {
         // Cor de fundo da janela
         getContentPane().setBackground(Color.BLACK);
     }
-
+    
+            
     public static void main(String[] args) {
+         try {
+            source="";
+            File myObj = new File("my.game");
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                source=source+data;
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    
+         
         SwingUtilities.invokeLater(() -> {
+       
             gameParserApp app = new gameParserApp();
             app.setVisible(true);
         });
