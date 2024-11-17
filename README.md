@@ -1,2 +1,2 @@
-# ini.file.lenguage
-lenguage file ini init files windows 3.11
+# game.engine
+intrepreter of games
